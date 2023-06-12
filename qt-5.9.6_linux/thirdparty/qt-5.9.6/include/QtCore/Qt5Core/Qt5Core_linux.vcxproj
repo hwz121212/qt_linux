@@ -762,7 +762,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="global\qt_pch.h.cpp" />
-    <ClCompile Include="global\qversiontagging.cpp" />
+    <ClCompile Include="global\qversiontagging.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="io\qabstractfileengine.cpp" />
     <ClCompile Include="io\qbuffer.cpp" />
     <ClCompile Include="io\qdatastream.cpp" />
@@ -774,12 +777,22 @@
     <ClCompile Include="io\qfiledevice.cpp" />
     <ClCompile Include="io\qfileinfo.cpp" />
     <ClCompile Include="io\qfileselector.cpp" />
-    <ClCompile Include="io\qfilesystemengine.cpp" />
+    <ClCompile Include="io\qfilesystemengine.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="io\qfilesystemengine_unix.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="io\qfilesystemengine_win.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="io\qfilesystementry.cpp" />
+    <ClCompile Include="io\qfilesystemiterator_unix.cpp" />
     <ClCompile Include="io\qfilesystemiterator_win.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
@@ -796,6 +809,7 @@
     </ClCompile>
     <ClCompile Include="io\qfsfileengine.cpp" />
     <ClCompile Include="io\qfsfileengine_iterator.cpp" />
+    <ClCompile Include="io\qfsfileengine_unix.cpp" />
     <ClCompile Include="io\qfsfileengine_win.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
@@ -819,8 +833,10 @@
     <ClCompile Include="io\qresource_iterator.cpp" />
     <ClCompile Include="io\qsavefile.cpp" />
     <ClCompile Include="io\qsettings.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="io\qsettings_win.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -881,6 +897,7 @@
     <ClCompile Include="kernel\qcoreglobaldata.cpp" />
     <ClCompile Include="kernel\qdeadlinetimer.cpp" />
     <ClCompile Include="kernel\qelapsedtimer.cpp" />
+    <ClCompile Include="kernel\qelapsedtimer_generic.cpp" />
     <ClCompile Include="kernel\qelapsedtimer_win.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
@@ -1222,27 +1239,71 @@
     <ClCompile Include="statemachine\qsignaltransition.cpp" />
     <ClCompile Include="statemachine\qstate.cpp" />
     <ClCompile Include="statemachine\qstatemachine.cpp" />
-    <ClCompile Include="thread\qatomic.cpp" />
-    <ClCompile Include="thread\qexception.cpp" />
-    <ClCompile Include="thread\qfutureinterface.cpp" />
-    <ClCompile Include="thread\qfuturewatcher.cpp" />
-    <ClCompile Include="thread\qmutex.cpp" />
-    <ClCompile Include="thread\qmutexpool.cpp" />
+    <ClCompile Include="thread\qatomic.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="thread\qexception.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="thread\qfutureinterface.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="thread\qfuturewatcher.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="thread\qmutex.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="thread\qmutexpool.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="thread\qmutex_linux.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="thread\qreadwritelock.cpp" />
-    <ClCompile Include="thread\qresultstore.cpp" />
-    <ClCompile Include="thread\qrunnable.cpp" />
-    <ClCompile Include="thread\qsemaphore.cpp" />
-    <ClCompile Include="thread\qthread.cpp" />
-    <ClCompile Include="thread\qthreadpool.cpp" />
-    <ClCompile Include="thread\qthreadstorage.cpp" />
+    <ClCompile Include="thread\qreadwritelock.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="thread\qresultstore.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="thread\qrunnable.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="thread\qsemaphore.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="thread\qthread.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="thread\qthreadpool.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="thread\qthreadstorage.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="thread\qthread_unix.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="thread\qthread_win.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="thread\qwaitcondition_unix.cpp" />
     <ClCompile Include="thread\qwaitcondition_win.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
@@ -1707,7 +1768,8 @@
       <AdditionalIncludeDirectories>.;..;global;moc;..\..\..\include;..\..\..\include\QtCore;..\..\..\include\QtCore\5.9.6;..\..\..\include\QtCore\5.9.6\QtCore;..\..\..\include\QtCore\5.9.6\QtCore\private;..\..\..\include\QtCore\3rdparty\harfbuzz_qt\include;..\..\..\mkspecs\win32-msvc;..\..\..\mkspecs\linux-g++;$(SolutionDir)thirdparty\zlib-1.2.12\include;$(SolutionDir)thirdparty\double-conversion-3.2.1\include;$(SolutionDir)thirdparty\pcre2-10.40\include;..\3rdparty\harfbuzz_qt\include;/root/projects/Qt5Core/include;/root/projects/Qt5Core/include/QtCore;/root/projects/Qt5Core/include/QtCore/5.9.6;/root/projects/Qt5Core/include/QtCore/5.9.6/QtCore;/root/projects/Qt5Core/include/QtCore/5.9.6/QtCore/private;/root/projects/Qt5Core/include/QtCore/Qt5Core/moc;/root/projects/Qt5Core/include/QtCore/Qt5Core/tools;/root/projects/Qt5Core/mkspecs/linux-g++;/root/projects/Qt5Core/include/QtCore/3rdparty/harfbuzz_qt/include;/root/projects/pcre2/include;/root/projects/zlib/include;/root/projects/double-conversion/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>QT_BUILD_INTERNAL;QT_SHARED;PCRE2_CODE_UNIT_WIDTH=16;QT_NO_NARROWING_CONVERSIONS_IN_CONNECT;HAVE_CONFIG_H;UNICODE;_UNICODE;QT_NO_USING_NAMESPACE;QT_NO_FOREACH;QT_BUILD_CORE_LIB;QT_BUILDING_QT;_CRT_SECURE_NO_WARNINGS;_USE_MATH_DEFINES;QT_ASCII_CAST_WARNINGS;QT_MOC_COMPAT;QT_USE_QSTRINGBUILDER;QT_DEPRECATED_WARNINGS;QT_DISABLE_DEPRECATED_BEFORE=0x040800;QT_NO_DEBUG;Q_OS_LINUX;HB_SUPPORT_MULTIPLE_MASTER</PreprocessorDefinitions>
       <AdditionalOptions>-fPIC %(AdditionalOptions)</AdditionalOptions>
-      <UndefinePreprocessorDefinitions>__GNUC__</UndefinePreprocessorDefinitions>
+      <UndefinePreprocessorDefinitions>
+      </UndefinePreprocessorDefinitions>
     </ClCompile>
     <Link />
     <Link>
@@ -1719,7 +1781,8 @@
       <AdditionalIncludeDirectories>.;..;global;moc;..\..\..\include;..\..\..\include\QtCore;..\..\..\include\QtCore\5.9.6;..\..\..\include\QtCore\5.9.6\QtCore;..\..\..\include\QtCore\5.9.6\QtCore\private;..\..\..\include\QtCore\3rdparty\harfbuzz_qt\include;..\..\..\mkspecs\win32-msvc;..\..\..\mkspecs\linux-g++;$(SolutionDir)thirdparty\zlib-1.2.12\include;$(SolutionDir)thirdparty\double-conversion-3.2.1\include;$(SolutionDir)thirdparty\pcre2-10.40\include;..\3rdparty\harfbuzz_qt\include;/root/projects/Qt5Core/include;/root/projects/Qt5Core/include/QtCore;/root/projects/Qt5Core/include/QtCore/5.9.6;/root/projects/Qt5Core/include/QtCore/5.9.6/QtCore;/root/projects/Qt5Core/include/QtCore/5.9.6/QtCore/private;/root/projects/Qt5Core/include/QtCore/Qt5Core/moc;/root/projects/Qt5Core/include/QtCore/Qt5Core/tools;/root/projects/Qt5Core/mkspecs/linux-g++;/root/projects/Qt5Core/include/QtCore/3rdparty/harfbuzz_qt/include;/root/projects/pcre2/include;/root/projects/zlib/include;/root/projects/double-conversion/include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>QT_BUILD_INTERNAL;QT_SHARED;PCRE2_CODE_UNIT_WIDTH=16;QT_NO_NARROWING_CONVERSIONS_IN_CONNECT;HAVE_CONFIG_H;UNICODE;_UNICODE;QT_NO_USING_NAMESPACE;QT_NO_FOREACH;QT_BUILD_CORE_LIB;QT_BUILDING_QT;_CRT_SECURE_NO_WARNINGS;_USE_MATH_DEFINES;QT_ASCII_CAST_WARNINGS;QT_MOC_COMPAT;QT_USE_QSTRINGBUILDER;QT_DEPRECATED_WARNINGS;QT_DISABLE_DEPRECATED_BEFORE=0x040800;QT_NO_DEBUG;Q_OS_LINUX;HB_SUPPORT_MULTIPLE_MASTER</PreprocessorDefinitions>
       <AdditionalOptions>-fPIC %(AdditionalOptions)</AdditionalOptions>
-      <UndefinePreprocessorDefinitions>__GNUC__</UndefinePreprocessorDefinitions>
+      <UndefinePreprocessorDefinitions>
+      </UndefinePreprocessorDefinitions>
     </ClCompile>
     <Link />
     <Link>

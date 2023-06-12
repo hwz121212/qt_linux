@@ -2237,6 +2237,24 @@
     <ClCompile Include="thread\qmutex_linux.cpp">
       <Filter>Qt5Core\thread</Filter>
     </ClCompile>
+    <ClCompile Include="kernel\qelapsedtimer_generic.cpp">
+      <Filter>Qt5Core\kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="io\qfilesystemengine_unix.cpp">
+      <Filter>Qt5Core\io</Filter>
+    </ClCompile>
+    <ClCompile Include="thread\qthread_unix.cpp">
+      <Filter>Qt5Core\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="thread\qwaitcondition_unix.cpp">
+      <Filter>Qt5Core\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="io\qfilesystemiterator_unix.cpp">
+      <Filter>Qt5Core\io</Filter>
+    </ClCompile>
+    <ClCompile Include="io\qfsfileengine_unix.cpp">
+      <Filter>Qt5Core\io</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="mimetypes\mime\packages\freedesktop.org.xml">
