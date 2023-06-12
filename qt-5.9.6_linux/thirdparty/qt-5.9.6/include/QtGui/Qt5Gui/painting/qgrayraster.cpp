@@ -328,7 +328,7 @@
 
   } TRaster, *PRaster;
 
-  int q_gray_rendered_spans(TRaster *raster)
+  int q_gray_rendered_spans(QT_FT_Raster raster)
   {
     if ( raster && raster->worker )
       return raster->worker->skip_spans > 0 ? 0 : -raster->worker->skip_spans;
@@ -1435,7 +1435,7 @@
         tags--;
       }
 
-      error = gray_move_to( &v_start, user );
+      error = gray_move_to( &v_start, (PWorker)user );
       if ( error )
         goto Exit;
 
@@ -1455,7 +1455,7 @@
             vec.x = SCALED( point->x );
             vec.y = SCALED( point->y );
 
-            gray_render_line(user, UPSCALE(vec.x), UPSCALE(vec.y));
+            gray_render_line((PWorker)user, UPSCALE(vec.x), UPSCALE(vec.y));
             continue;
           }
 
@@ -1480,7 +1480,7 @@
 
               if ( tag == QT_FT_CURVE_TAG_ON )
               {
-                gray_render_conic(user, &v_control, &vec);
+                gray_render_conic((PWorker)user, &v_control, &vec);
                 continue;
               }
 
@@ -1490,12 +1490,12 @@
               v_middle.x = ( v_control.x + vec.x ) / 2;
               v_middle.y = ( v_control.y + vec.y ) / 2;
 
-              gray_render_conic(user, &v_control, &v_middle);
+              gray_render_conic((PWorker)user, &v_control, &v_middle);
               v_control = vec;
               goto Do_Conic;
             }
 
-            gray_render_conic(user, &v_control, &v_start);
+            gray_render_conic((PWorker)user, &v_control, &v_start);
             goto Close;
           }
 
@@ -1525,18 +1525,18 @@
               vec.x = SCALED( point->x );
               vec.y = SCALED( point->y );
 
-              gray_render_cubic(user, &vec1, &vec2, &vec);
+              gray_render_cubic((PWorker)user, &vec1, &vec2, &vec);
               continue;
             }
 
-            gray_render_cubic(user, &vec1, &vec2, &v_start);
+            gray_render_cubic((PWorker)user, &vec1, &vec2, &v_start);
             goto Close;
           }
         }
       }
 
       /* close the contour with a line segment */
-      gray_render_line(user, UPSCALE(v_start.x), UPSCALE(v_start.y));
+      gray_render_line((PWorker)user, UPSCALE(v_start.x), UPSCALE(v_start.y));
 
    Close:
       first = last + 1;
@@ -1845,7 +1845,7 @@
   static int
   gray_raster_new( QT_FT_Raster*  araster )
   {
-    *araster = malloc(sizeof(TRaster));
+    *araster = (QT_FT_Raster)malloc(sizeof(TRaster));
     if (!*araster) {
         *araster = 0;
         return ErrRaster_Memory_Overflow;
