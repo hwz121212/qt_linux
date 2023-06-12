@@ -13,7 +13,6 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C0A665B1-1273-3BFA-A534-F45CE900E146}</ProjectGuid>
     <RootNamespace>Qt5Widgets</RootNamespace>
-    <Keyword>QtVS_v304</Keyword>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
     <QtMsBuild Condition="'$(QtMsBuild)'=='' or !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
   </PropertyGroup>
@@ -31,9 +30,6 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
-    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
-  </Target>
   <ImportGroup Label="ExtensionSettings" />
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
@@ -42,9 +38,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
-    <Import Project="$(QtMsBuild)\qt_defaults.props" />
-  </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\Temp\$(SolutionName)\$(ProjectName)\$(Configuration)\</IntDir>
@@ -58,20 +51,9 @@
     <LinkIncremental>false</LinkIncremental>
     <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
   </PropertyGroup>
-  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <QtInstall>msvc2017_64</QtInstall>
-    <QtModules>core;gui</QtModules>
-  </PropertyGroup>
-  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <QtInstall>msvc2017_64</QtInstall>
-    <QtModules>core;gui</QtModules>
-  </PropertyGroup>
-  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
-    <Import Project="$(QtMsBuild)\qt.props" />
-  </ImportGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;dialogs;uic;..\..\..\include;..\..\..\include\QtWidgets;..\..\..\include\QtWidgets\5.9.6;..\..\..\include\QtWidgets\5.9.6\QtWidgets;..\..\..\include\QtWidgets\5.9.6\QtWidgets\private;..\..\..\include\QtGui;..\..\..\include\QtGui\5.9.6;..\..\..\include\QtGui\5.9.6\QtGui;..\..\..\include\QtCore;..\..\..\include\QtCore\5.9.6;..\..\..\include\QtCore\5.9.6\QtCore;..\..\..\mkspecs\win32-msvc;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;dialogs;uic;..\..\..\include;..\..\..\include\QtWidgets;..\..\..\include\QtWidgets\5.9.6;..\..\..\include\QtWidgets\5.9.6\QtWidgets;..\..\..\include\QtWidgets\5.9.6\QtWidgets\private;..\..\..\include\QtWidgets\Qt5Widgets\moc;..\..\..\include\QtGui;..\..\..\include\QtGui\5.9.6;..\..\..\include\QtGui\5.9.6\QtGui;..\..\..\include\QtCore;..\..\..\include\QtCore\5.9.6;..\..\..\include\QtCore\5.9.6\QtCore;..\..\..\mkspecs\win32-msvc</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -w34100 -w34189 -w44996 %(AdditionalOptions)</AdditionalOptions>
       <BrowseInformation>false</BrowseInformation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -118,28 +100,10 @@
       <Message>
       </Message>
     </PostBuildEvent>
-    <QtMoc>
-      <CompilerFlavor>msvc</CompilerFlavor>
-      <Include>
-      </Include>
-      <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
-      <DynamicSource>output</DynamicSource>
-      <QtMocDir>moc</QtMocDir>
-      <QtMocFileName>moc_%(Filename).cpp</QtMocFileName>
-    </QtMoc>
-    <QtRcc>
-      <ExecutionDescription>Rcc'ing %(Identity)...</ExecutionDescription>
-      <Compression>default</Compression>
-      <QtRccDir>rcc</QtRccDir>
-      <QtRccFileName>qrc_%(Filename).cpp</QtRccFileName>
-    </QtRcc>
-    <QtUic>
-      <QtUicDir>uic</QtUicDir>
-    </QtUic>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;dialogs;uic;..\..\..\include;..\..\..\include\QtWidgets;..\..\..\include\QtWidgets\5.9.6;..\..\..\include\QtWidgets\5.9.6\QtWidgets;..\..\..\include\QtWidgets\5.9.6\QtWidgets\private;..\..\..\include\QtGui;..\..\..\include\QtGui\5.9.6;..\..\..\include\QtGui\5.9.6\QtGui;..\..\..\include\QtCore;..\..\..\include\QtCore\5.9.6;..\..\..\include\QtCore\5.9.6\QtCore;..\..\..\mkspecs\win32-msvc;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;dialogs;uic;..\..\..\include;..\..\..\include\QtWidgets;..\..\..\include\QtWidgets\5.9.6;..\..\..\include\QtWidgets\5.9.6\QtWidgets;..\..\..\include\QtWidgets\5.9.6\QtWidgets\private;..\..\..\include\QtWidgets\Qt5Widgets\moc;..\..\..\include\QtGui;..\..\..\include\QtGui\5.9.6;..\..\..\include\QtGui\5.9.6\QtGui;..\..\..\include\QtCore;..\..\..\include\QtCore\5.9.6;..\..\..\include\QtCore\5.9.6\QtCore;..\..\..\mkspecs\win32-msvc</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -w34100 -w34189 -w44996 %(AdditionalOptions)</AdditionalOptions>
       <BrowseInformation>false</BrowseInformation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -184,28 +148,640 @@
       <Message>
       </Message>
     </PostBuildEvent>
-    <QtMoc>
-      <CompilerFlavor>msvc</CompilerFlavor>
-      <Include>
-      </Include>
-      <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
-      <DynamicSource>output</DynamicSource>
-      <QtMocDir>moc</QtMocDir>
-      <QtMocFileName>moc_%(Filename).cpp</QtMocFileName>
-    </QtMoc>
-    <QtRcc>
-      <ExecutionDescription>Rcc'ing %(Identity)...</ExecutionDescription>
-      <Compression>default</Compression>
-      <QtRccDir>rcc</QtRccDir>
-      <QtRccFileName>qrc_%(Filename).cpp</QtRccFileName>
-    </QtRcc>
-    <QtUic>
-      <QtUicDir>uic</QtUicDir>
-    </QtUic>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="accessible\complexwidgets.cpp" />
     <ClCompile Include="accessible\itemviews.cpp" />
+    <ClCompile Include="kernel\qt_widgets_pch.h.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qabstractbutton.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qabstractitemdelegate.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qabstractitemview.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qabstractscrollarea.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qabstractscrollarea_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qabstractslider.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qabstractspinbox.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qaction.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qactiongroup.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qapplication.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qbasickeyeventtransition_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qbasicmouseeventtransition_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qboxlayout.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qbuttongroup.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qcalendarwidget.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qcheckbox.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qcolordialog.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qcolumnview.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qcolumnviewgrip_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qcombobox.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qcombobox_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qcommandlinkbutton.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qcommonstyle.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qcompleter.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qcompleter_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qdatawidgetmapper.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qdatetimeedit.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qdatetimeedit_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qdesktopwidget.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qdesktopwidget_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qdial.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qdialog.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qdialogbuttonbox.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qdirmodel.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qdockwidget.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qdockwidget_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qerrormessage.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qfiledialog.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qfileinfogatherer_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qfilesystemmodel.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qflickgesture_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qfocusframe.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qfontcombobox.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qfontdialog.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qformlayout.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qframe.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qfusionstyle_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qgesture.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qgesturemanager_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qgraphicsanchorlayout.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qgraphicseffect.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qgraphicseffect_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qgraphicsitem.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qgraphicsitemanimation.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qgraphicsproxywidget.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qgraphicsscene.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qgraphicsscenebsptreeindex_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qgraphicssceneindex_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qgraphicsscenelinearindex_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qgraphicstransform.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qgraphicsview.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qgraphicswidget.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qgridlayout.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qgroupbox.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qheaderview.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qinputdialog.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qitemdelegate.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qitemeditorfactory_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qkeyeventtransition.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qkeysequenceedit.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qlabel.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qlayout.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qlcdnumber.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qlineedit.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qlineedit_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qlistview.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qlistwidget.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qlistwidget_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qmainwindow.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qmainwindowlayout_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qmdiarea.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qmdisubwindow.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qmenu.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qmenubar.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qmessagebox.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qmouseeventtransition.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qopenglwidget.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qpixmapfilter_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qpixmapstyle_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qplaintextedit.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qplaintextedit_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qprogressbar.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qprogressdialog.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qproxystyle.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qpushbutton.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qradiobutton.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qrubberband.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qscrollarea.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qscrollbar.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qscroller.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qscroller_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qshortcut.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qsidebar_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qsizegrip.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qsizepolicy.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qslider.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qspinbox.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qsplashscreen.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qsplitter.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qstackedlayout.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qstackedwidget.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qstatusbar.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qstyle.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qstyleanimation_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qstyleditemdelegate.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qstyleplugin.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qstylesheetstyle_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qsystemtrayicon.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qsystemtrayicon_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qtabbar.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qtabbar_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qtableview.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qtablewidget.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qtablewidget_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qtabwidget.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qtextbrowser.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qtextedit.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qtoolbar.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qtoolbarextension_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qtoolbarlayout_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qtoolbarseparator_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qtoolbox.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qtoolbutton.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qtreeview.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qtreewidget.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qtreewidget_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qundogroup.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qundostack.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qundostack_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qundoview.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qwidget.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qwidgetaction.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qwidgetanimator_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qwidgetbackingstore_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qwidgetlinecontrol_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qwidgetresizehandler_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qwidgettextcontrol_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qwidgetwindow_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qwindowcontainer_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qwindowsstyle_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qwindowsvistastyle_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qwindowsvistastyle_p_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qwindowsxpstyle_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qwizard.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="rcc\qrc_qmessagebox.cpp" />
+    <ClCompile Include="rcc\qrc_qstyle.cpp" />
     <ClCompile Include="widgets\qabstractbutton.cpp" />
     <ClCompile Include="itemviews\qabstractitemdelegate.cpp" />
     <ClCompile Include="itemviews\qabstractitemview.cpp" />
@@ -373,895 +949,416 @@
   <ItemGroup>
     <ClInclude Include="..\5.9.6\QtWidgets\private\complexwidgets_p.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\itemviews_p.h" />
-    <QtMoc Include="..\qabstractbutton.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qabstractbutton.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qabstractbutton_p.h" />
-    <QtMoc Include="..\qabstractitemdelegate.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qabstractitemdelegate.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qabstractitemdelegate_p.h" />
-    <QtMoc Include="..\qabstractitemview.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qabstractitemview.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qabstractitemview_p.h" />
-    <QtMoc Include="..\qabstractscrollarea.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qabstractscrollarea_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qabstractslider.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qabstractscrollarea.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qabstractscrollarea_p.h" />
+    <ClInclude Include="..\qabstractslider.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qabstractslider_p.h" />
-    <QtMoc Include="..\qabstractspinbox.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qabstractspinbox.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qabstractspinbox_p.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qaccessiblemenu_p.h" />
     <ClInclude Include="..\qaccessiblewidget.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qaccessiblewidgetfactory_p.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qaccessiblewidgets_p.h" />
-    <QtMoc Include="..\qaction.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qaction.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qaction_p.h" />
-    <QtMoc Include="..\qactiongroup.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qapplication.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qactiongroup.h" />
+    <ClInclude Include="..\qapplication.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qapplication_p.h" />
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qbasickeyeventtransition_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qbasicmouseeventtransition_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qboxlayout.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qbasickeyeventtransition_p.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qbasicmouseeventtransition_p.h" />
+    <ClInclude Include="..\qboxlayout.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qbsptree_p.h" />
-    <QtMoc Include="..\qbuttongroup.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qbuttongroup.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qbuttongroup_p.h" />
-    <QtMoc Include="..\qcalendarwidget.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qcheckbox.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qcolordialog.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qcalendarwidget.h" />
+    <ClInclude Include="..\qcheckbox.h" />
+    <ClInclude Include="..\qcolordialog.h" />
     <ClInclude Include="..\qcolormap.h" />
-    <QtMoc Include="..\qcolumnview.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qcolumnview.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qcolumnview_p.h" />
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qcolumnviewgrip_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qcombobox.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qcombobox_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qcommandlinkbutton.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qcommonstyle.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qcolumnviewgrip_p.h" />
+    <ClInclude Include="..\qcombobox.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qcombobox_p.h" />
+    <ClInclude Include="..\qcommandlinkbutton.h" />
+    <ClInclude Include="..\qcommonstyle.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qcommonstyle_p.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qcommonstylepixmaps_p.h" />
-    <QtMoc Include="..\qcompleter.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qcompleter_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qdatawidgetmapper.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qdatetimeedit.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qdatetimeedit_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qdesktopwidget.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qdesktopwidget_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qdial.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qdialog.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qcompleter.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qcompleter_p.h" />
+    <ClInclude Include="..\qdatawidgetmapper.h" />
+    <ClInclude Include="..\qdatetimeedit.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qdatetimeedit_p.h" />
+    <ClInclude Include="..\qdesktopwidget.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qdesktopwidget_p.h" />
+    <ClInclude Include="..\qdial.h" />
+    <ClInclude Include="..\qdialog.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qdialog_p.h" />
-    <QtMoc Include="..\qdialogbuttonbox.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qdirmodel.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qdialogbuttonbox.h" />
+    <ClInclude Include="..\qdirmodel.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qdockarealayout_p.h" />
-    <QtMoc Include="..\qdockwidget.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qdockwidget_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qdockwidget.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qdockwidget_p.h" />
     <ClInclude Include="..\qdrawutil.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qeffects_p.h" />
-    <QtMoc Include="..\qerrormessage.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qfiledialog.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qerrormessage.h" />
+    <ClInclude Include="..\qfiledialog.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qfiledialog_p.h" />
     <ClInclude Include="..\qfileiconprovider.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qfileiconprovider_p.h" />
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qfileinfogatherer_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qfilesystemmodel.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qfileinfogatherer_p.h" />
+    <ClInclude Include="..\qfilesystemmodel.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qfilesystemmodel_p.h" />
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qflickgesture_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qfocusframe.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qfontcombobox.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qfontdialog.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qflickgesture_p.h" />
+    <ClInclude Include="..\qfocusframe.h" />
+    <ClInclude Include="..\qfontcombobox.h" />
+    <ClInclude Include="..\qfontdialog.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qfontdialog_p.h" />
-    <QtMoc Include="..\qformlayout.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qframe.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qformlayout.h" />
+    <ClInclude Include="..\qframe.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qframe_p.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qfscompleter_p.h" />
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qfusionstyle_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qfusionstyle_p.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qfusionstyle_p_p.h" />
-    <QtMoc Include="..\qgesture.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qgesture.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qgesture_p.h" />
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qgesturemanager_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qgesturemanager_p.h" />
     <ClInclude Include="..\qgesturerecognizer.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qgraph_p.h" />
-    <QtMoc Include="..\qgraphicsanchorlayout.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qgraphicsanchorlayout.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qgraphicsanchorlayout_p.h" />
-    <QtMoc Include="..\qgraphicseffect.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qgraphicseffect_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qgraphicseffect.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qgraphicseffect_p.h" />
     <ClInclude Include="..\qgraphicsgridlayout.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qgraphicsgridlayoutengine_p.h" />
-    <QtMoc Include="..\qgraphicsitem.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qgraphicsitem.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qgraphicsitem_p.h" />
-    <QtMoc Include="..\qgraphicsitemanimation.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qgraphicsitemanimation.h" />
     <ClInclude Include="..\qgraphicslayout.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qgraphicslayout_p.h" />
     <ClInclude Include="..\qgraphicslayoutitem.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qgraphicslayoutitem_p.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qgraphicslayoutstyleinfo_p.h" />
     <ClInclude Include="..\qgraphicslinearlayout.h" />
-    <QtMoc Include="..\qgraphicsproxywidget.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qgraphicsproxywidget.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qgraphicsproxywidget_p.h" />
-    <QtMoc Include="..\qgraphicsscene.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qgraphicsscene.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qgraphicsscene_bsp_p.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qgraphicsscene_p.h" />
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qgraphicsscenebsptreeindex_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qgraphicsscenebsptreeindex_p.h" />
     <ClInclude Include="..\qgraphicssceneevent.h" />
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qgraphicssceneindex_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qgraphicsscenelinearindex_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qgraphicstransform.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qgraphicssceneindex_p.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qgraphicsscenelinearindex_p.h" />
+    <ClInclude Include="..\qgraphicstransform.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qgraphicstransform_p.h" />
-    <QtMoc Include="..\qgraphicsview.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qgraphicsview.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qgraphicsview_p.h" />
-    <QtMoc Include="..\qgraphicswidget.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qgraphicswidget.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qgraphicswidget_p.h" />
-    <QtMoc Include="..\qgridlayout.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qgroupbox.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qheaderview.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qgridlayout.h" />
+    <ClInclude Include="..\qgroupbox.h" />
+    <ClInclude Include="..\qheaderview.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qheaderview_p.h" />
-    <QtMoc Include="..\qinputdialog.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qitemdelegate.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qinputdialog.h" />
+    <ClInclude Include="..\qitemdelegate.h" />
     <ClInclude Include="..\qitemeditorfactory.h" />
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qitemeditorfactory_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qkeyeventtransition.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qkeysequenceedit.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qitemeditorfactory_p.h" />
+    <ClInclude Include="..\qkeyeventtransition.h" />
+    <ClInclude Include="..\qkeysequenceedit.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qkeysequenceedit_p.h" />
-    <QtMoc Include="..\qlabel.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qlabel.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qlabel_p.h" />
-    <QtMoc Include="..\qlayout.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qlayout.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qlayout_p.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qlayoutengine_p.h" />
     <ClInclude Include="..\qlayoutitem.h" />
-    <QtMoc Include="..\qlcdnumber.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qlineedit.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qlineedit_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qlistview.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qlcdnumber.h" />
+    <ClInclude Include="..\qlineedit.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qlineedit_p.h" />
+    <ClInclude Include="..\qlistview.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qlistview_p.h" />
-    <QtMoc Include="..\qlistwidget.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qlistwidget_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qmainwindow.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qmainwindowlayout_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qmdiarea.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qlistwidget.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qlistwidget_p.h" />
+    <ClInclude Include="..\qmainwindow.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qmainwindowlayout_p.h" />
+    <ClInclude Include="..\qmdiarea.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qmdiarea_p.h" />
-    <QtMoc Include="..\qmdisubwindow.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qmdisubwindow.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qmdisubwindow_p.h" />
-    <QtMoc Include="..\qmenu.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qmenu.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qmenu_p.h" />
-    <QtMoc Include="..\qmenubar.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qmenubar.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qmenubar_p.h" />
-    <QtMoc Include="..\qmessagebox.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qmouseeventtransition.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qopenglwidget.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qpixmapfilter_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qpixmapstyle_p.h">
-    </QtMoc>
+    <ClInclude Include="..\qmessagebox.h" />
+    <ClInclude Include="..\qmouseeventtransition.h" />
+    <ClInclude Include="..\qopenglwidget.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qpixmapfilter_p.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qpixmapstyle_p.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qpixmapstyle_p_p.h" />
-    <QtMoc Include="..\qplaintextedit.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qplaintextedit_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qprogressbar.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qprogressdialog.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qproxystyle.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qplaintextedit.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qplaintextedit_p.h" />
+    <ClInclude Include="..\qprogressbar.h" />
+    <ClInclude Include="..\qprogressdialog.h" />
+    <ClInclude Include="..\qproxystyle.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qproxystyle_p.h" />
-    <QtMoc Include="..\qpushbutton.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qpushbutton.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qpushbutton_p.h" />
-    <QtMoc Include="..\qradiobutton.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qrubberband.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qscrollarea.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qradiobutton.h" />
+    <ClInclude Include="..\qrubberband.h" />
+    <ClInclude Include="..\qscrollarea.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qscrollarea_p.h" />
-    <QtMoc Include="..\qscrollbar.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qscrollbar.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qscrollbar_p.h" />
-    <QtMoc Include="..\qscroller.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qscroller_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qscroller.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qscroller_p.h" />
     <ClInclude Include="..\qscrollerproperties.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qscrollerproperties_p.h" />
-    <QtMoc Include="..\qshortcut.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qsidebar_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qshortcut.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qsidebar_p.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qsimplex_p.h" />
-    <QtMoc Include="..\qsizegrip.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qsizepolicy.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qslider.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qspinbox.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qsplashscreen.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qsplitter.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qsizegrip.h" />
+    <ClInclude Include="..\qsizepolicy.h" />
+    <ClInclude Include="..\qslider.h" />
+    <ClInclude Include="..\qspinbox.h" />
+    <ClInclude Include="..\qsplashscreen.h" />
+    <ClInclude Include="..\qsplitter.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qsplitter_p.h" />
-    <QtMoc Include="..\qstackedlayout.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qstackedwidget.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qstackedlayout.h" />
+    <ClInclude Include="..\qstackedwidget.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qstandardgestures_p.h" />
-    <QtMoc Include="..\qstatusbar.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qstyle.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qstyleanimation_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qstyleditemdelegate.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qstatusbar.h" />
+    <ClInclude Include="..\qstyle.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qstyleanimation_p.h" />
+    <ClInclude Include="..\qstyleditemdelegate.h" />
     <ClInclude Include="..\qstylefactory.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qstylehelper_p.h" />
     <ClInclude Include="..\qstyleoption.h" />
     <ClInclude Include="..\qstylepainter.h" />
-    <QtMoc Include="..\qstyleplugin.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qstylesheetstyle_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qsystemtrayicon.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qsystemtrayicon_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <CustomBuild Include="..\5.9.6\QtWidgets\private\qt_widgets_pch.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">echo /*-------------------------------------------------------------------- &gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * Precompiled header source file used by Visual Studio.NET to generate&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * the .pch file.&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo *&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * Due to issues with the dependencies checker within the IDE, it&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * sometimes fails to recompile the PCH file, if we force the IDE to&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * create the PCH file directly from the header file.&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo *&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * This file is auto-generated by qmake since no PRECOMPILED_SOURCE was&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * specified, and is used as the common stdafx.cpp. The file is only&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * generated when creating .vcxproj project files, and is not used for&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * command line compilations by nmake.&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo *&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * WARNING: All changes made in this file will be lost.&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo --------------------------------------------------------------------*/&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo #include "qt_widgets_pch.h"&gt;&gt;kernel\qt_widgets_pch.h.cpp</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generating precompiled header source file 'kernel\qt_widgets_pch.h.cpp' ...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">kernel\qt_widgets_pch.h.cpp;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">echo /*-------------------------------------------------------------------- &gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * Precompiled header source file used by Visual Studio.NET to generate&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * the .pch file.&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo *&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * Due to issues with the dependencies checker within the IDE, it&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * sometimes fails to recompile the PCH file, if we force the IDE to&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * create the PCH file directly from the header file.&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo *&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * This file is auto-generated by qmake since no PRECOMPILED_SOURCE was&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * specified, and is used as the common stdafx.cpp. The file is only&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * generated when creating .vcxproj project files, and is not used for&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * command line compilations by nmake.&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo *&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * WARNING: All changes made in this file will be lost.&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo --------------------------------------------------------------------*/&gt;&gt;kernel\qt_widgets_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo #include "qt_widgets_pch.h"&gt;&gt;kernel\qt_widgets_pch.h.cpp</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generating precompiled header source file 'kernel\qt_widgets_pch.h.cpp' ...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">kernel\qt_widgets_pch.h.cpp;%(Outputs)</Outputs>
-    </CustomBuild>
-    <QtMoc Include="..\qtabbar.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qtabbar_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qtableview.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qstyleplugin.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qstylesheetstyle_p.h" />
+    <ClInclude Include="..\qsystemtrayicon.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qsystemtrayicon_p.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qt_widgets_pch.h" />
+    <ClInclude Include="..\qtabbar.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qtabbar_p.h" />
+    <ClInclude Include="..\qtableview.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qtableview_p.h" />
-    <QtMoc Include="..\qtablewidget.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qtablewidget_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qtabwidget.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qtextbrowser.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qtextedit.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qtablewidget.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qtablewidget_p.h" />
+    <ClInclude Include="..\qtabwidget.h" />
+    <ClInclude Include="..\qtextbrowser.h" />
+    <ClInclude Include="..\qtextedit.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qtextedit_p.h" />
-    <QtMoc Include="..\qtoolbar.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qtoolbar.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qtoolbar_p.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qtoolbararealayout_p.h" />
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qtoolbarextension_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qtoolbarlayout_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qtoolbarseparator_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qtoolbox.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qtoolbutton.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qtoolbarextension_p.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qtoolbarlayout_p.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qtoolbarseparator_p.h" />
+    <ClInclude Include="..\qtoolbox.h" />
+    <ClInclude Include="..\qtoolbutton.h" />
+    <ClInclude Include="..\qtreeview.h" />
     <ClInclude Include="..\qtooltip.h" />
-    <QtMoc Include="..\qtreeview.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
     <ClInclude Include="..\5.9.6\QtWidgets\private\qtreeview_p.h" />
-    <QtMoc Include="..\qtreewidget.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qtreewidget_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qtreewidget.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qtreewidget_p.h" />
     <ClInclude Include="..\qtreewidgetitemiterator.h" />
     <ClInclude Include="..\qtwidgetsglobal.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qtwidgetsglobal_p.h" />
-    <QtMoc Include="..\qundogroup.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qundostack.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qundostack_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qundoview.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qundogroup.h" />
+    <ClInclude Include="..\qundostack.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qundostack_p.h" />
+    <ClInclude Include="..\qundoview.h" />
     <ClInclude Include="..\qwhatsthis.h" />
-    <QtMoc Include="..\qwidget.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qwidget.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qwidget_p.h" />
-    <QtMoc Include="..\qwidgetaction.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qwidgetaction.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qwidgetaction_p.h" />
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qwidgetanimator_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qwidgetbackingstore_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qwidgetanimator_p.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qwidgetbackingstore_p.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qwidgetitemdata_p.h" />
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qwidgetlinecontrol_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qwidgetresizehandler_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qwidgettextcontrol_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qwidgetlinecontrol_p.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qwidgetresizehandler_p.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qwidgettextcontrol_p.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qwidgettextcontrol_p_p.h" />
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qwidgetwindow_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qwindowcontainer_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qwindowsstyle_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qwidgetwindow_p.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qwindowcontainer_p.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qwindowsstyle_p.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qwindowsstyle_p_p.h" />
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qwindowsvistastyle_p.h">
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qwindowsvistastyle_p_p.h">
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtWidgets\private\qwindowsxpstyle_p.h">
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qwindowsvistastyle_p.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qwindowsvistastyle_p_p.h" />
+    <ClInclude Include="..\5.9.6\QtWidgets\private\qwindowsxpstyle_p.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qwindowsxpstyle_p_p.h" />
-    <QtMoc Include="..\qwizard.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qwizard.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\qwizard_win_p.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\rangecontrols_p.h" />
     <ClInclude Include="..\5.9.6\QtWidgets\private\simplewidgets_p.h" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="widgets\qcalendarwidget.cpp">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
-      <QtMocDir>moc</QtMocDir>
-      <QtMocFileName>%(Filename)moc</QtMocFileName>
-    </QtMoc>
-    <QtMoc Include="dialogs\qcolordialog.cpp">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
-      <QtMocDir>moc</QtMocDir>
-      <QtMocFileName>%(Filename)moc</QtMocFileName>
-    </QtMoc>
-    <QtMoc Include="widgets\qdockwidget.cpp">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
-      <QtMocDir>moc</QtMocDir>
-      <QtMocFileName>%(Filename)moc</QtMocFileName>
-    </QtMoc>
-    <QtMoc Include="widgets\qeffects.cpp">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
-      <QtMocDir>moc</QtMocDir>
-      <QtMocFileName>%(Filename)moc</QtMocFileName>
-    </QtMoc>
-    <QtMoc Include="widgets\qfontcombobox.cpp">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
-      <QtMocDir>moc</QtMocDir>
-      <QtMocFileName>%(Filename)moc</QtMocFileName>
-    </QtMoc>
-    <QtMoc Include="dialogs\qfontdialog.cpp">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
-      <QtMocDir>moc</QtMocDir>
-      <QtMocFileName>%(Filename)moc</QtMocFileName>
-    </QtMoc>
-    <QtMoc Include="dialogs\qinputdialog.cpp">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
-      <QtMocDir>moc</QtMocDir>
-      <QtMocFileName>%(Filename)moc</QtMocFileName>
-    </QtMoc>
-    <QtMoc Include="itemviews\qitemeditorfactory.cpp">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
-      <QtMocDir>moc</QtMocDir>
-      <QtMocFileName>%(Filename)moc</QtMocFileName>
-    </QtMoc>
-    <QtMoc Include="itemviews\qlistwidget.cpp">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
-      <QtMocDir>moc</QtMocDir>
-      <QtMocFileName>%(Filename)moc</QtMocFileName>
-    </QtMoc>
-    <QtMoc Include="widgets\qmdisubwindow.cpp">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
-      <QtMocDir>moc</QtMocDir>
-      <QtMocFileName>%(Filename)moc</QtMocFileName>
-    </QtMoc>
-    <QtMoc Include="widgets\qmenu.cpp">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
-      <QtMocDir>moc</QtMocDir>
-      <QtMocFileName>%(Filename)moc</QtMocFileName>
-    </QtMoc>
-    <QtMoc Include="dialogs\qmessagebox.cpp">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
-      <QtMocDir>moc</QtMocDir>
-      <QtMocFileName>%(Filename)moc</QtMocFileName>
-    </QtMoc>
-    <ClCompile Include="kernel\qt_widgets_pch.h.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\5.9.6\QtWidgets\private\qt_widgets_pch.h</ForcedIncludeFiles>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\5.9.6\QtWidgets\private\qt_widgets_pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\5.9.6\QtWidgets\private\qt_widgets_pch.h</ForcedIncludeFiles>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\5.9.6\QtWidgets\private\qt_widgets_pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-    </ClCompile>
-    <QtMoc Include="itemviews\qtableview.cpp">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
-      <QtMocDir>moc</QtMocDir>
-      <QtMocFileName>%(Filename)moc</QtMocFileName>
-    </QtMoc>
-    <QtMoc Include="widgets\qtoolbox.cpp">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
-      <QtMocDir>moc</QtMocDir>
-      <QtMocFileName>%(Filename)moc</QtMocFileName>
-    </QtMoc>
-    <QtMoc Include="kernel\qtooltip.cpp">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
-      <QtMocDir>moc</QtMocDir>
-      <QtMocFileName>%(Filename)moc</QtMocFileName>
-    </QtMoc>
-    <QtMoc Include="util\qundoview.cpp">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
-      <QtMocDir>moc</QtMocDir>
-      <QtMocFileName>%(Filename)moc</QtMocFileName>
-    </QtMoc>
-    <QtMoc Include="kernel\qwhatsthis.cpp">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
-      <QtMocDir>moc</QtMocDir>
-      <QtMocFileName>%(Filename)moc</QtMocFileName>
-    </QtMoc>
+    <ClCompile Include="widgets\qcalendarwidget.cpp" />
+    <ClCompile Include="dialogs\qcolordialog.cpp" />
+    <ClCompile Include="widgets\qdockwidget.cpp" />
+    <ClCompile Include="widgets\qeffects.cpp" />
+    <ClCompile Include="widgets\qfontcombobox.cpp" />
+    <ClCompile Include="dialogs\qfontdialog.cpp" />
+    <ClCompile Include="dialogs\qinputdialog.cpp" />
+    <ClCompile Include="itemviews\qitemeditorfactory.cpp" />
+    <ClCompile Include="itemviews\qlistwidget.cpp" />
+    <ClCompile Include="widgets\qmdisubwindow.cpp" />
+    <ClCompile Include="widgets\qmenu.cpp" />
+    <ClCompile Include="dialogs\qmessagebox.cpp" />
+    <ClCompile Include="itemviews\qtableview.cpp" />
+    <ClCompile Include="widgets\qtoolbox.cpp" />
+    <ClCompile Include="kernel\qtooltip.cpp" />
+    <ClCompile Include="util\qundoview.cpp" />
+    <ClCompile Include="kernel\qwhatsthis.cpp" />
     <ClInclude Include="uic\ui_qfiledialog.h" />
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="dialogs\qfiledialog.ui">
-    </QtUic>
+    <None Include="dialogs\qfiledialog.ui" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="moc\qcalendarwidget.moc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qcalendarwidgetmoc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qcolordialog.moc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qcolordialogmoc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qdockwidget.moc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qdockwidgetmoc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qeffects.moc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qeffectsmoc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qfontcombobox.moc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qfontcomboboxmoc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qfontdialog.moc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qfontdialogmoc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qinputdialog.moc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qinputdialogmoc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qitemeditorfactory.moc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qitemeditorfactorymoc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qlistwidget.moc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qlistwidgetmoc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qmdisubwindow.moc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qmdisubwindowmoc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qmenu.moc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qmenumoc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qmessagebox.moc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qmessageboxmoc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qtableview.moc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qtableviewmoc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qtoolbox.moc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qtoolboxmoc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qtooltip.moc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qtooltipmoc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qundoview.moc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qundoviewmoc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qwhatsthis.moc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="moc\qwhatsthismoc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
     <None Include="styles\images\cdr-128.png" />
     <None Include="styles\images\cdr-16.png" />
     <None Include="styles\images\cdr-32.png" />
@@ -1340,14 +1437,8 @@ echo #include "qt_widgets_pch.h"&gt;&gt;kernel\qt_widgets_pch.h.cpp</Command>
     <None Include="styles\images\parentdir-128.png" />
     <None Include="styles\images\parentdir-16.png" />
     <None Include="styles\images\parentdir-32.png" />
-    <QtRcc Include="dialogs\qmessagebox.qrc">
-      <InitFuncName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">qmessagebox</InitFuncName>
-      <InitFuncName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">qmessagebox</InitFuncName>
-    </QtRcc>
-    <QtRcc Include="styles\qstyle.qrc">
-      <InitFuncName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">qstyle</InitFuncName>
-      <InitFuncName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">qstyle</InitFuncName>
-    </QtRcc>
+    <None Include="dialogs\qmessagebox.qrc" />
+    <None Include="styles\qstyle.qrc" />
     <None Include="dialogs\images\qtlogo-64.png" />
     <None Include="styles\images\refresh-24.png" />
     <None Include="styles\images\refresh-32.png" />
@@ -1407,15 +1498,6 @@ echo #include "qt_widgets_pch.h"&gt;&gt;kernel\qt_widgets_pch.h.cpp</Command>
     <None Include="styles\images\viewlist-16.png" />
     <None Include="styles\images\viewlist-32.png" />
   </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include=".\Qt5Widgets_resource.rc">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </ExcludedFromBuild>
-    </ResourceCompile>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
-    <Import Project="$(QtMsBuild)\qt.targets" />
-  </ImportGroup>
   <ImportGroup Label="ExtensionTargets" />
 </Project>
