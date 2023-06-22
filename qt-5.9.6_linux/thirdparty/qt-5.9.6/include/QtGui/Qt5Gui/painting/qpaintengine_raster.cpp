@@ -3532,9 +3532,8 @@ void QRasterPaintEnginePrivate::rasterize(QT_FT_Outline *outline,
     rasterize(outline, callback, (void *)spanData, rasterBuffer);
 }
 
-extern "C" {
-    int q_gray_rendered_spans(QT_FT_Raster raster);
-}
+extern  int q_gray_rendered_spans(QT_FT_Raster raster);
+
 
 static inline uchar *alignAddress(uchar *address, quintptr alignmentMask)
 {

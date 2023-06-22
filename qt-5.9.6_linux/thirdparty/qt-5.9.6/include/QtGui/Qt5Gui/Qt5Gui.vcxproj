@@ -13,9 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8747F298-28A7-39D4-B357-E694E468431A}</ProjectGuid>
     <RootNamespace>Qt5Gui</RootNamespace>
-    <Keyword>QtVS_v304</Keyword>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
-    <QtMsBuild Condition="'$(QtMsBuild)'=='' or !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -31,9 +29,6 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
-    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
-  </Target>
   <ImportGroup Label="ExtensionSettings" />
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
@@ -42,9 +37,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
-    <Import Project="$(QtMsBuild)\qt_defaults.props" />
-  </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\Temp\$(SolutionName)\$(ProjectName)\$(Configuration)\</IntDir>
@@ -58,20 +50,9 @@
     <LinkIncremental>false</LinkIncremental>
     <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
   </PropertyGroup>
-  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <QtInstall>msvc2017_64</QtInstall>
-    <QtModules>core</QtModules>
-  </PropertyGroup>
-  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <QtInstall>msvc2017_64</QtInstall>
-    <QtModules>core</QtModules>
-  </PropertyGroup>
-  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
-    <Import Project="$(QtMsBuild)\qt.props" />
-  </ImportGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;..\..\..\include;..\..\..\include\QtGui;..\..\..\include\QtGui\5.9.6;..\..\..\include\QtGui\5.9.6\QtGui;..\..\..\include\QtGui\5.9.6\QtGui\private;..\..\..\include\QtGui\5.9.6\QtGui\qpa;..\..\..\include\QtCore\5.9.6;..\..\..\include\QtCore\5.9.6\QtCore;..\..\..\include\QtCore;..\..\..\include\QtANGLE;..\..\..\mkspecs\win32-msvc;$(SolutionDir)thirdparty\zlib-1.2.12\include;$(SolutionDir)thirdparty\png1637\include;$(SolutionDir)thirdparty\harfbuzz-ng-1.4.1\include;..\3rdparty\harfbuzz_qt\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\..\..\include;..\..\..\include\QtGui;..\..\..\include\QtGui\5.9.6;..\..\..\include\QtGui\5.9.6\QtGui;..\..\..\include\QtGui\5.9.6\QtGui\private;..\..\..\include\QtGui\5.9.6\QtGui\qpa;..\..\..\include\QtGui\Qt5Gui\moc;..\..\..\include\QtCore\5.9.6;..\..\..\include\QtCore\5.9.6\QtCore;..\..\..\include\QtCore;..\..\..\include\QtANGLE;..\..\..\mkspecs\win32-msvc;$(SolutionDir)thirdparty\zlib-1.2.12\include;$(SolutionDir)thirdparty\png1637\include;$(SolutionDir)thirdparty\harfbuzz-ng-1.4.1\include;..\3rdparty\harfbuzz_qt\include</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -w34100 -w34189 -w44996 %(AdditionalOptions)</AdditionalOptions>
       <BrowseInformation>false</BrowseInformation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -118,19 +99,10 @@
       <Message>
       </Message>
     </PostBuildEvent>
-    <QtMoc>
-      <CompilerFlavor>msvc</CompilerFlavor>
-      <Include>
-      </Include>
-      <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
-      <DynamicSource>output</DynamicSource>
-      <QtMocDir>moc</QtMocDir>
-      <QtMocFileName>moc_%(Filename).cpp</QtMocFileName>
-    </QtMoc>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;..\..\..\include;..\..\..\include\QtGui;..\..\..\include\QtGui\5.9.6;..\..\..\include\QtGui\5.9.6\QtGui;..\..\..\include\QtGui\5.9.6\QtGui\private;..\..\..\include\QtGui\5.9.6\QtGui\qpa;..\..\..\include\QtCore\5.9.6;..\..\..\include\QtCore\5.9.6\QtCore;..\..\..\include\QtCore;..\..\..\include\QtANGLE;..\..\..\mkspecs\win32-msvc;$(SolutionDir)thirdparty\zlib-1.2.12\include;$(SolutionDir)thirdparty\png1637\include;$(SolutionDir)thirdparty\harfbuzz-ng-1.4.1\include;..\3rdparty\harfbuzz_qt\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\..\..\include;..\..\..\include\QtGui;..\..\..\include\QtGui\5.9.6;..\..\..\include\QtGui\5.9.6\QtGui;..\..\..\include\QtGui\5.9.6\QtGui\private;..\..\..\include\QtGui\5.9.6\QtGui\qpa;..\..\..\include\QtGui\Qt5Gui\moc;..\..\..\include\QtCore\5.9.6;..\..\..\include\QtCore\5.9.6\QtCore;..\..\..\include\QtCore;..\..\..\include\QtANGLE;..\..\..\mkspecs\win32-msvc;$(SolutionDir)thirdparty\zlib-1.2.12\include;$(SolutionDir)thirdparty\png1637\include;$(SolutionDir)thirdparty\harfbuzz-ng-1.4.1\include;..\3rdparty\harfbuzz_qt\include</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -w34100 -w34189 -w44996 %(AdditionalOptions)</AdditionalOptions>
       <BrowseInformation>false</BrowseInformation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -175,15 +147,6 @@
       <Message>
       </Message>
     </PostBuildEvent>
-    <QtMoc>
-      <CompilerFlavor>msvc</CompilerFlavor>
-      <Include>
-      </Include>
-      <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
-      <DynamicSource>output</DynamicSource>
-      <QtMocDir>moc</QtMocDir>
-      <QtMocFileName>moc_%(Filename).cpp</QtMocFileName>
-    </QtMoc>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="image\qimage_avx2.cpp">
@@ -234,6 +197,114 @@
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </ForcedIncludeFiles>
     </ClCompile>
+    <ClCompile Include="moc\moc_qabstracttextdocumentlayout.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qaccessible.cpp" />
+    <ClCompile Include="moc\moc_qaccessiblebridge.cpp" />
+    <ClCompile Include="moc\moc_qaccessiblecache_p.cpp" />
+    <ClCompile Include="moc\moc_qaccessibleplugin.cpp" />
+    <ClCompile Include="moc\moc_qbrush.cpp" />
+    <ClCompile Include="moc\moc_qclipboard.cpp" />
+    <ClCompile Include="moc\moc_qdnd_p.cpp" />
+    <ClCompile Include="moc\moc_qdrag.cpp" />
+    <ClCompile Include="moc\moc_qevent.cpp" />
+    <ClCompile Include="moc\moc_qfont.cpp" />
+    <ClCompile Include="moc\moc_qfontdatabase.cpp" />
+    <ClCompile Include="moc\moc_qgenericplugin.cpp" />
+    <ClCompile Include="moc\moc_qguiapplication.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qiconengineplugin.cpp" />
+    <ClCompile Include="moc\moc_qimageiohandler.cpp" />
+    <ClCompile Include="moc\moc_qinputcontrol_p.cpp" />
+    <ClCompile Include="moc\moc_qinputdevicemanager_p.cpp" />
+    <ClCompile Include="moc\moc_qinputmethod.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qkeymapper_p.cpp" />
+    <ClCompile Include="moc\moc_qkeysequence.cpp" />
+    <ClCompile Include="moc\moc_qmovie.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qoffscreensurface.cpp" />
+    <ClCompile Include="moc\moc_qopenglcontext.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qopengldebug.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qopenglengineshadermanager_p.cpp" />
+    <ClCompile Include="moc\moc_qopenglshaderprogram.cpp" />
+    <ClCompile Include="moc\moc_qopengltexture.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qopenglvertexarrayobject.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qopenglwindow.cpp" />
+    <ClCompile Include="moc\moc_qpaintdevicewindow.cpp" />
+    <ClCompile Include="moc\moc_qpainter.cpp" />
+    <ClCompile Include="moc\moc_qpalette.cpp" />
+    <ClCompile Include="moc\moc_qpdfwriter.cpp" />
+    <ClCompile Include="moc\moc_qpictureformatplugin.cpp" />
+    <ClCompile Include="moc\moc_qplatformbackingstore.cpp" />
+    <ClCompile Include="moc\moc_qplatformdialoghelper.cpp" />
+    <ClCompile Include="moc\moc_qplatformgraphicsbuffer.cpp" />
+    <ClCompile Include="moc\moc_qplatforminputcontext.cpp" />
+    <ClCompile Include="moc\moc_qplatforminputcontextplugin_p.cpp" />
+    <ClCompile Include="moc\moc_qplatformintegrationplugin.cpp" />
+    <ClCompile Include="moc\moc_qplatformmenu.cpp" />
+    <ClCompile Include="moc\moc_qplatformnativeinterface.cpp" />
+    <ClCompile Include="moc\moc_qplatformsharedgraphicscache.cpp" />
+    <ClCompile Include="moc\moc_qplatformsystemtrayicon.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qplatformthemeplugin.cpp" />
+    <ClCompile Include="moc\moc_qrasterwindow.cpp" />
+    <ClCompile Include="moc\moc_qscreen.cpp" />
+    <ClCompile Include="moc\moc_qsessionmanager.cpp" />
+    <ClCompile Include="moc\moc_qshapedpixmapdndwindow_p.cpp" />
+    <ClCompile Include="moc\moc_qstandarditemmodel.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qstylehints.cpp" />
+    <ClCompile Include="moc\moc_qsurfaceformat.cpp" />
+    <ClCompile Include="moc\moc_qsyntaxhighlighter.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qtextdocument.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qtextdocumentlayout_p.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="moc\moc_qtextformat.cpp" />
+    <ClCompile Include="moc\moc_qtextimagehandler_p.cpp" />
+    <ClCompile Include="moc\moc_qtextlist.cpp" />
+    <ClCompile Include="moc\moc_qtextobject.cpp" />
+    <ClCompile Include="moc\moc_qtexttable.cpp" />
+    <ClCompile Include="moc\moc_qtouchdevice.cpp" />
+    <ClCompile Include="moc\moc_qvalidator.cpp" />
+    <ClCompile Include="moc\moc_qwindow.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="opengl\qopenglfunctions_1_0.cpp" />
     <ClCompile Include="opengl\qopenglfunctions_1_1.cpp" />
     <ClCompile Include="opengl\qopenglfunctions_1_2.cpp" />
@@ -260,54 +331,10 @@
     <ClCompile Include="opengl\qopenglfunctions_4_4_core.cpp" />
     <ClCompile Include="opengl\qopenglfunctions_4_5_compatibility.cpp" />
     <ClCompile Include="opengl\qopenglfunctions_4_5_core.cpp" />
-    <ClCompile Include="painting\qdrawhelper_avx2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </PrecompiledHeaderFile>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </ForcedIncludeFiles>
-    </ClCompile>
-    <ClCompile Include="painting\qdrawhelper_sse4.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </PrecompiledHeaderFile>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </ForcedIncludeFiles>
-    </ClCompile>
-    <ClCompile Include="painting\qdrawhelper_ssse3.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </PrecompiledHeaderFile>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </ForcedIncludeFiles>
-    </ClCompile>
-    <ClCompile Include="painting\qimagescale_sse4.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </PrecompiledHeaderFile>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </ForcedIncludeFiles>
-    </ClCompile>
+    <ClCompile Include="painting\qdrawhelper_avx2.cpp" />
+    <ClCompile Include="painting\qdrawhelper_sse4.cpp" />
+    <ClCompile Include="painting\qdrawhelper_ssse3.cpp" />
+    <ClCompile Include="painting\qimagescale_sse4.cpp" />
     <ClCompile Include="util\qabstractlayoutstyleinfo.cpp" />
     <ClCompile Include="text\qabstracttextdocumentlayout.cpp" />
     <ClCompile Include="accessible\qaccessible.cpp" />
@@ -349,14 +376,8 @@
     <ClCompile Include="kernel\qgenericplugin.cpp" />
     <ClCompile Include="kernel\qgenericpluginfactory.cpp" />
     <ClCompile Include="text\qglyphrun.cpp" />
-    <ClCompile Include="painting\qgrayraster.c">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(NOINHERIT)</ForcedIncludeFiles>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(NOINHERIT)</PrecompiledHeaderFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(NOINHERIT)</ForcedIncludeFiles>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(NOINHERIT)</PrecompiledHeaderFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="painting\qgrayraster.cpp" />
+    <ClCompile Include="util\qdesktopservices.cpp" />
     <ClCompile Include="util\qgridlayoutengine.cpp" />
     <ClCompile Include="kernel\qguiapplication.cpp" />
     <ClCompile Include="kernel\qguivariant.cpp" />
@@ -519,30 +540,21 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\5.9.6\QtGui\private\qabstractlayoutstyleinfo_p.h" />
-    <QtMoc Include="..\qabstracttextdocumentlayout.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qabstracttextdocumentlayout.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qabstracttextdocumentlayout_p.h" />
-    <QtMoc Include="..\qaccessible.h">
-    </QtMoc>
-    <QtMoc Include="..\qaccessiblebridge.h">
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtGui\private\qaccessiblecache_p.h">
-    </QtMoc>
+    <ClInclude Include="..\qaccessible.h" />
+    <ClInclude Include="..\qaccessiblebridge.h" />
+    <ClInclude Include="..\5.9.6\QtGui\private\qaccessiblecache_p.h" />
     <ClInclude Include="..\qaccessibleobject.h" />
-    <QtMoc Include="..\qaccessibleplugin.h">
-    </QtMoc>
+    <ClInclude Include="..\qaccessibleplugin.h" />
     <ClInclude Include="..\qbackingstore.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qbezier_p.h" />
     <ClInclude Include="..\qbitmap.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qblendfunctions_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qblittable_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qbmphandler_p.h" />
-    <QtMoc Include="..\qbrush.h">
-    </QtMoc>
-    <QtMoc Include="..\qclipboard.h">
-    </QtMoc>
+    <ClInclude Include="..\qbrush.h" />
+    <ClInclude Include="..\qclipboard.h" />
     <ClInclude Include="..\qcolor.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qcolor_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qcolorprofile_p.h" />
@@ -553,23 +565,18 @@
     <ClInclude Include="..\5.9.6\QtGui\private\qdatabuffer_p.h" />
     <ClInclude Include="..\qdesktopservices.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qdistancefield_p.h" />
-    <QtMoc Include="..\5.9.6\QtGui\private\qdnd_p.h">
-    </QtMoc>
-    <QtMoc Include="..\qdrag.h">
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtGui\private\qdnd_p.h" />
+    <ClInclude Include="..\qdrag.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qdrawhelper_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qdrawhelper_x86_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qdrawingprimitive_sse2_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qemulationpaintengine_p.h" />
-    <QtMoc Include="..\qevent.h">
-    </QtMoc>
+    <ClInclude Include="..\qevent.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qevent_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qfixed_p.h" />
-    <QtMoc Include="..\qfont.h">
-    </QtMoc>
+    <ClInclude Include="..\qfont.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qfont_p.h" />
-    <QtMoc Include="..\qfontdatabase.h">
-    </QtMoc>
+    <ClInclude Include="..\qfontdatabase.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qfontengine_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qfontengineglyphcache_p.h" />
     <ClInclude Include="..\qfontinfo.h" />
@@ -577,17 +584,13 @@
     <ClInclude Include="..\5.9.6\QtGui\private\qfontsubset_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qfragmentmap_p.h" />
     <ClInclude Include="..\qgenericmatrix.h" />
-    <QtMoc Include="..\qgenericplugin.h">
-    </QtMoc>
+    <ClInclude Include="..\qgenericplugin.h" />
     <ClInclude Include="..\qgenericpluginfactory.h" />
     <ClInclude Include="..\qglyphrun.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qglyphrun_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qgrayraster_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qgridlayoutengine_p.h" />
-    <QtMoc Include="..\qguiapplication.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qguiapplication.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qguiapplication_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qharfbuzzng_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qhexstring_p.h" />
@@ -595,57 +598,37 @@
     <ClInclude Include="..\qicon.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qicon_p.h" />
     <ClInclude Include="..\qiconengine.h" />
-    <QtMoc Include="..\qiconengineplugin.h">
-    </QtMoc>
+    <ClInclude Include="..\qiconengineplugin.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qiconloader_p.h" />
     <ClInclude Include="..\qimage.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qimage_p.h" />
-    <QtMoc Include="..\qimageiohandler.h">
-    </QtMoc>
+    <ClInclude Include="..\qimageiohandler.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qimagepixmapcleanuphooks_p.h" />
     <ClInclude Include="..\qimagereader.h" />
     <ClInclude Include="..\qimagewriter.h" />
-    <QtMoc Include="..\5.9.6\QtGui\private\qinputcontrol_p.h">
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtGui\private\qinputdevicemanager_p.h">
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtGui\private\qinputcontrol_p.h" />
+    <ClInclude Include="..\5.9.6\QtGui\private\qinputdevicemanager_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qinputdevicemanager_p_p.h" />
-    <QtMoc Include="..\qinputmethod.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qinputmethod.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qinputmethod_p.h" />
-    <QtMoc Include="..\5.9.6\QtGui\private\qkeymapper_p.h">
-    </QtMoc>
-    <QtMoc Include="..\qkeysequence.h">
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtGui\private\qkeymapper_p.h" />
+    <ClInclude Include="..\qkeysequence.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qkeysequence_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qlayoutpolicy_p.h" />
     <ClInclude Include="..\qmatrix.h" />
     <ClInclude Include="..\qmatrix4x4.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qmemrotate_p.h" />
-    <QtMoc Include="..\qmovie.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qoffscreensurface.h">
-    </QtMoc>
+    <ClInclude Include="..\qmovie.h" />
+    <ClInclude Include="..\qoffscreensurface.h" />
     <ClInclude Include="..\qopengl.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qopengl2pexvertexarray_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qopengl_p.h" />
     <ClInclude Include="..\qopenglbuffer.h" />
-    <QtMoc Include="..\qopenglcontext.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qopenglcontext.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qopenglcontext_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qopenglcustomshaderstage_p.h" />
-    <QtMoc Include="..\qopengldebug.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtGui\private\qopenglengineshadermanager_p.h">
-    </QtMoc>
+    <ClInclude Include="..\qopengldebug.h" />
+    <ClInclude Include="..\5.9.6\QtGui\private\qopenglengineshadermanager_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qopenglengineshadersource_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qopenglextensions_p.h" />
     <ClInclude Include="..\qopenglextrafunctions.h" />
@@ -660,10 +643,8 @@
     <ClInclude Include="..\qopenglpixeltransferoptions.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qopenglprogrambinarycache_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qopenglshadercache_p.h" />
-    <QtMoc Include="..\qopenglshaderprogram.h">
-    </QtMoc>
-    <QtMoc Include="..\qopengltexture.h">
-    </QtMoc>
+    <ClInclude Include="..\qopenglshaderprogram.h" />
+    <ClInclude Include="..\qopengltexture.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qopengltexture_p.h" />
     <ClInclude Include="..\qopengltextureblitter.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qopengltexturecache_p.h" />
@@ -671,20 +652,15 @@
     <ClInclude Include="..\5.9.6\QtGui\private\qopengltexturehelper_p.h" />
     <ClInclude Include="..\qopenglversionfunctions.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qopenglversionfunctionsfactory_p.h" />
-    <QtMoc Include="..\qopenglvertexarrayobject.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <QtMoc Include="..\qopenglwindow.h">
-    </QtMoc>
+    <ClInclude Include="..\qopenglvertexarrayobject.h" />
+    <ClInclude Include="..\qopenglwindow.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qoutlinemapper_p.h" />
     <ClInclude Include="..\qpagedpaintdevice.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qpagedpaintdevice_p.h" />
     <ClInclude Include="..\qpagelayout.h" />
     <ClInclude Include="..\qpagesize.h" />
     <ClInclude Include="..\qpaintdevice.h" />
-    <QtMoc Include="..\qpaintdevicewindow.h">
-    </QtMoc>
+    <ClInclude Include="..\qpaintdevicewindow.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qpaintdevicewindow_p.h" />
     <ClInclude Include="..\qpaintengine.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qpaintengine_blitter_p.h" />
@@ -692,23 +668,19 @@
     <ClInclude Include="..\5.9.6\QtGui\private\qpaintengine_pic_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qpaintengine_raster_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qpaintengineex_p.h" />
-    <QtMoc Include="..\qpainter.h">
-    </QtMoc>
+    <ClInclude Include="..\qpainter.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qpainter_p.h" />
     <ClInclude Include="..\qpainterpath.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qpainterpath_p.h" />
-    <QtMoc Include="..\qpalette.h">
-    </QtMoc>
+    <ClInclude Include="..\qpalette.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qpathclipper_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qpathsimplifier_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qpdf_p.h" />
-    <QtMoc Include="..\qpdfwriter.h">
-    </QtMoc>
+    <ClInclude Include="..\qpdfwriter.h" />
     <ClInclude Include="..\qpen.h" />
     <ClInclude Include="..\qpicture.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qpicture_p.h" />
-    <QtMoc Include="..\qpictureformatplugin.h">
-    </QtMoc>
+    <ClInclude Include="..\qpictureformatplugin.h" />
     <ClInclude Include="..\qpixelformat.h" />
     <ClInclude Include="..\qpixmap.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qpixmap_blitter_p.h" />
@@ -716,31 +688,23 @@
     <ClInclude Include="..\qpixmapcache.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qpixmapcache_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformaccessibility.h" />
-    <QtMoc Include="..\5.9.6\QtGui\qpa\qplatformbackingstore.h">
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformbackingstore.h" />
     <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformclipboard.h" />
     <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformcursor.h" />
-    <QtMoc Include="..\5.9.6\QtGui\qpa\qplatformdialoghelper.h">
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformdialoghelper.h" />
     <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformdrag.h" />
     <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformfontdatabase.h" />
-    <QtMoc Include="..\5.9.6\QtGui\qpa\qplatformgraphicsbuffer.h">
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformgraphicsbuffer.h" />
     <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformgraphicsbufferhelper.h" />
-    <QtMoc Include="..\5.9.6\QtGui\qpa\qplatforminputcontext.h">
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtGui\qpa\qplatforminputcontext.h" />
     <ClInclude Include="..\5.9.6\QtGui\qpa\qplatforminputcontext_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\qpa\qplatforminputcontextfactory_p.h" />
-    <QtMoc Include="..\5.9.6\QtGui\qpa\qplatforminputcontextplugin_p.h">
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtGui\qpa\qplatforminputcontextplugin_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformintegration.h" />
     <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformintegrationfactory_p.h" />
-    <QtMoc Include="..\5.9.6\QtGui\qpa\qplatformintegrationplugin.h">
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtGui\qpa\qplatformmenu.h">
-    </QtMoc>
-    <QtMoc Include="..\5.9.6\QtGui\qpa\qplatformnativeinterface.h">
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformintegrationplugin.h" />
+    <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformmenu.h" />
+    <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformnativeinterface.h" />
     <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformoffscreensurface.h" />
     <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformopenglcontext.h" />
     <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformpixmap.h" />
@@ -748,18 +712,13 @@
     <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformscreen_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformservices.h" />
     <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformsessionmanager.h" />
-    <QtMoc Include="..\5.9.6\QtGui\qpa\qplatformsharedgraphicscache.h">
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformsharedgraphicscache.h" />
     <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformsurface.h" />
-    <QtMoc Include="..\5.9.6\QtGui\qpa\qplatformsystemtrayicon.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformsystemtrayicon.h" />
     <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformtheme.h" />
     <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformtheme_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformthemefactory_p.h" />
-    <QtMoc Include="..\5.9.6\QtGui\qpa\qplatformthemeplugin.h">
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformthemeplugin.h" />
     <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformwindow.h" />
     <ClInclude Include="..\5.9.6\QtGui\qpa\qplatformwindow_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qpnghandler_p.h" />
@@ -769,8 +728,7 @@
     <ClInclude Include="..\qquaternion.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qrasterdefs_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qrasterizer_p.h" />
-    <QtMoc Include="..\qrasterwindow.h">
-    </QtMoc>
+    <ClInclude Include="..\qrasterwindow.h" />
     <ClInclude Include="..\qrawfont.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qrawfont_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qrbtree_p.h" />
@@ -778,150 +736,58 @@
     <ClInclude Include="..\qrgb.h" />
     <ClInclude Include="..\qrgba64.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qrgba64_p.h" />
-    <QtMoc Include="..\qscreen.h">
-    </QtMoc>
+    <ClInclude Include="..\qscreen.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qscreen_p.h" />
-    <QtMoc Include="..\qsessionmanager.h">
-    </QtMoc>
+    <ClInclude Include="..\qsessionmanager.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qsessionmanager_p.h" />
-    <QtMoc Include="..\5.9.6\QtGui\private\qshapedpixmapdndwindow_p.h">
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtGui\private\qshapedpixmapdndwindow_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qshortcutmap_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qsimpledrag_p.h" />
-    <QtMoc Include="..\qstandarditemmodel.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qstandarditemmodel.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qstandarditemmodel_p.h" />
     <ClInclude Include="..\qstatictext.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qstatictext_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qstroker_p.h" />
-    <QtMoc Include="..\qstylehints.h">
-    </QtMoc>
+    <ClInclude Include="..\qstylehints.h" />
     <ClInclude Include="..\qsurface.h" />
-    <QtMoc Include="..\qsurfaceformat.h">
-    </QtMoc>
-    <QtMoc Include="..\qsyntaxhighlighter.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
-    <CustomBuild Include="..\5.9.6\QtGui\private\qt_gui_pch.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">echo /*-------------------------------------------------------------------- &gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * Precompiled header source file used by Visual Studio.NET to generate&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * the .pch file.&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo *&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * Due to issues with the dependencies checker within the IDE, it&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * sometimes fails to recompile the PCH file, if we force the IDE to&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * create the PCH file directly from the header file.&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo *&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * This file is auto-generated by qmake since no PRECOMPILED_SOURCE was&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * specified, and is used as the common stdafx.cpp. The file is only&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * generated when creating .vcxproj project files, and is not used for&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * command line compilations by nmake.&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo *&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * WARNING: All changes made in this file will be lost.&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo --------------------------------------------------------------------*/&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo #include "qt_gui_pch.h"&gt;&gt;kernel\qt_gui_pch.h.cpp</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generating precompiled header source file 'kernel\qt_gui_pch.h.cpp' ...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">kernel\qt_gui_pch.h.cpp;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">echo /*-------------------------------------------------------------------- &gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * Precompiled header source file used by Visual Studio.NET to generate&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * the .pch file.&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo *&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * Due to issues with the dependencies checker within the IDE, it&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * sometimes fails to recompile the PCH file, if we force the IDE to&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * create the PCH file directly from the header file.&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo *&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * This file is auto-generated by qmake since no PRECOMPILED_SOURCE was&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * specified, and is used as the common stdafx.cpp. The file is only&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * generated when creating .vcxproj project files, and is not used for&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * command line compilations by nmake.&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo *&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo * WARNING: All changes made in this file will be lost.&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo --------------------------------------------------------------------*/&gt;&gt;kernel\qt_gui_pch.h.cpp
-if errorlevel 1 goto VCEnd
-echo #include "qt_gui_pch.h"&gt;&gt;kernel\qt_gui_pch.h.cpp</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generating precompiled header source file 'kernel\qt_gui_pch.h.cpp' ...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">kernel\qt_gui_pch.h.cpp;%(Outputs)</Outputs>
-    </CustomBuild>
+    <ClInclude Include="..\qsurfaceformat.h" />
+    <ClInclude Include="..\qsyntaxhighlighter.h" />
+    <ClInclude Include="..\5.9.6\QtGui\private\qt_gui_pch.h" />
     <ClInclude Include="..\qtextcursor.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qtextcursor_p.h" />
-    <QtMoc Include="..\qtextdocument.h">
-    </QtMoc>
+    <ClInclude Include="..\qtextdocument.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qtextdocument_p.h" />
     <ClInclude Include="..\qtextdocumentfragment.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qtextdocumentfragment_p.h" />
-    <QtMoc Include="..\5.9.6\QtGui\private\qtextdocumentlayout_p.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtGui\private\qtextdocumentlayout_p.h" />
     <ClInclude Include="..\qtextdocumentwriter.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qtextengine_p.h" />
-    <QtMoc Include="..\qtextformat.h">
-    </QtMoc>
+    <ClInclude Include="..\qtextformat.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qtextformat_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qtexthtmlparser_p.h" />
-    <QtMoc Include="..\5.9.6\QtGui\private\qtextimagehandler_p.h">
-    </QtMoc>
+    <ClInclude Include="..\5.9.6\QtGui\private\qtextimagehandler_p.h" />
     <ClInclude Include="..\qtextlayout.h" />
-    <QtMoc Include="..\qtextlist.h">
-    </QtMoc>
-    <QtMoc Include="..\qtextobject.h">
-    </QtMoc>
+    <ClInclude Include="..\qtextlist.h" />
+    <ClInclude Include="..\qtextobject.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qtextobject_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qtextodfwriter_p.h" />
     <ClInclude Include="..\qtextoption.h" />
-    <QtMoc Include="..\qtexttable.h">
-    </QtMoc>
+    <ClInclude Include="..\qtexttable.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qtexttable_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qtextureglyphcache_p.h" />
     <ClInclude Include="..\qtguiglobal.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qtguiglobal_p.h" />
-    <QtMoc Include="..\qtouchdevice.h">
-    </QtMoc>
+    <ClInclude Include="..\qtouchdevice.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qtouchdevice_p.h" />
     <ClInclude Include="..\qtransform.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qtriangulatingstroker_p.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qtriangulator_p.h" />
-    <QtMoc Include="..\qvalidator.h">
-    </QtMoc>
+    <ClInclude Include="..\qvalidator.h" />
     <ClInclude Include="..\qvector2d.h" />
     <ClInclude Include="..\qvector3d.h" />
     <ClInclude Include="..\qvector4d.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qvectorpath_p.h" />
-    <QtMoc Include="..\qwindow.h">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DynamicSource>
-    </QtMoc>
+    <ClInclude Include="..\qwindow.h" />
     <ClInclude Include="..\5.9.6\QtGui\private\qwindow_p.h" />
     <ClInclude Include="..\qwindowdefs.h" />
     <ClInclude Include="..\qwindowdefs_win.h" />
@@ -933,18 +799,8 @@ echo #include "qt_gui_pch.h"&gt;&gt;kernel\qt_gui_pch.h.cpp</Command>
     <ClInclude Include="..\5.9.6\QtGui\private\qzipwriter_p.h" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="util\qdesktopservices.cpp">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
-      <QtMocDir>moc</QtMocDir>
-      <QtMocFileName>%(Filename)moc</QtMocFileName>
-    </QtMoc>
-    <QtMoc Include="image\qpixmapcache.cpp">
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
-      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
-      <QtMocDir>moc</QtMocDir>
-      <QtMocFileName>%(Filename)moc</QtMocFileName>
-    </QtMoc>
+    <ClCompile Include="image\qpixmapcache.cpp">
+    </ClCompile>
     <ClCompile Include="kernel\qt_gui_pch.h.cpp">
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(NOINHERIT)</ForcedIncludeFiles>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">qt_gui_pch.h</PrecompiledHeaderFile>
@@ -955,14 +811,9 @@ echo #include "qt_gui_pch.h"&gt;&gt;kernel\qt_gui_pch.h.cpp</Command>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Qt5Gui_resource.rc">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </ExcludedFromBuild>
-    </ResourceCompile>
+    <None Include="moc\qdesktopservices.moc" />
+    <None Include="moc\qpixmapcache.moc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
-    <Import Project="$(QtMsBuild)\qt.targets" />
-  </ImportGroup>
   <ImportGroup Label="ExtensionTargets" />
 </Project>
