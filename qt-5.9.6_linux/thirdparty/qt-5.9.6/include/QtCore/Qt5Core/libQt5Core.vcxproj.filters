@@ -1313,9 +1313,6 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include=".\Qt5Core_resource.rc" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\5.9.6\QtCore\private\qabstracteventdispatcher_p.h">
       <Filter>Header Files\5.9.6\QtCore\private</Filter>
     </ClInclude>

@@ -7,7 +7,7 @@
 *****************************************************************************/
 
 static const unsigned char qt_resource_data[] = {
-  // F:/hanwenzhi_code_2023/qt_linux/qt-5.9.6/thirdparty/qt-5.9.6/include/QtCore/Qt5Core/mimetypes/mime/packages/freedesktop.org.xml
+  // F:/hanwenzhi_github_2023/qt_linux/qt-5.9.6_linux/thirdparty/qt-5.9.6/include/QtCore/Qt5Core/mimetypes/mime/packages/freedesktop.org.xml
   0x0,0x4,0xd2,0xc2,
   0x0,
   0x22,0x23,0xa7,0x78,0x9c,0xec,0xbd,0xe9,0x77,0x14,0x57,0x96,0x2f,0xfa,0xfd,0xae,
