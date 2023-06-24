@@ -1407,12 +1407,6 @@ echo #include "qt_widgets_pch.h"&gt;&gt;kernel\qt_widgets_pch.h.cpp</Command>
     <None Include="styles\images\viewlist-16.png" />
     <None Include="styles\images\viewlist-32.png" />
   </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include=".\Qt5Widgets_resource.rc">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </ExcludedFromBuild>
-    </ResourceCompile>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
     <Import Project="$(QtMsBuild)\qt.targets" />

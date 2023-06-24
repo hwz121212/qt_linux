@@ -1561,9 +1561,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include=".\Qt5Widgets_resource.rc" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\5.9.6\QtWidgets\private\itemviews_p.h">
       <Filter>Header Files\5.9.6\QtWidgets\private</Filter>
     </ClInclude>
