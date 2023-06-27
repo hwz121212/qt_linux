@@ -761,6 +761,9 @@
     <ClCompile Include="opengl\qopenglfunctions_4_5_core.cpp">
       <Filter>Source Files\opengl</Filter>
     </ClCompile>
+    <ClCompile Include="painting\qgrayraster.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="..\qabstracttextdocumentlayout.h">
@@ -1180,9 +1183,6 @@
     <QtMoc Include="..\qstandarditemmodel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Qt5Gui_resource.rc" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="..\5.9.6\QtGui\qpa\qplatformbackingstore.h">
